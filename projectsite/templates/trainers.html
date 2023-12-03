@@ -2,43 +2,42 @@
 {% load static %}
 
 {% block content %}
-<!--TRAINERS-->
+<!-- TRAINERS -->
 <section class="trainers-container">
     <table class="styled-table">
-      <tbody>
-        <tr>
-          <th>Trainer Name</th>
-          <th>Birthdate</th>
-          <th>Location</th>
-          <th>Email</th>
-        </tr>
-        {% for object in object_list %}
-        <!--ASH-->
-        <tr>
-          <td>{{ object.name }}</td>
-          <td>{{ object.birthdate }}</td>
-          <td>{{ object.location }}</td>
-          <td>{{ object.email}} </td>
-        </tr>
-        {% empty %}
-                <tr>
-                <td colspan="4" style="text-align: center;">
+        <tbody>
+            <tr>
+                <th>Trainer Name</th>
+                <th>Birthdate</th>
+                <th>Location</th>
+                <th>Email</th>
+                <th>Actions</th>
+            </tr>
+            {% for object in object_list %}
+            <tr>
+                <td>{{ object.name }}</td>
+                <td>{{ object.birthdate }}</td>
+                <td>{{ object.location }}</td>
+                <td>{{ object.email }}</td>
+                <td>
+                  <!-- Edit Button -->
+                  <a href="edit_trainer.html/{{ object.id }}">Edit</a>
+                  <!-- Delete Button -->
+                  <a href="delete_trainer.html/{{ object.id }}">Delete</a>
+              </td>
+              
+            </tr>
+            {% empty %}
+            <tr>
+                <td colspan="5" style="text-align: center;">
                     <p>No Records Found</p>
                 </td>
-                </tr>
-        {% endfor %}
-        <!--GARY-->
-        
-      </tbody>
+            </tr>
+            {% endfor %}
+        </tbody>
     </table>
-    
-    
-  </section>
-  <div>
+</section>
+<div>
     {% include 'includes/pagination.html' %}
-  </div>
-   
-  
-  
-  
+</div>
 {% endblock %}
