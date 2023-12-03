@@ -16,12 +16,15 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from cardquest.views import HomePageView, TrainerList
+from cardquest.views import HomePageView, TrainerList, TrainerDeleteView, TrainerUpdateView, TrainerAddView
 from cardquest import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', views.HomePageView.as_view(), name='home'),
     path('trainer_list', TrainerList.as_view(), name='trainer-list'),
-    
+    path('edit_trainer/<int:pk>/', TrainerUpdateView.as_view(), name='edit_trainer'),
+    path('delete_trainer/<int:pk>/', TrainerDeleteView.as_view(), name='delete_trainer'),
+    path('add_trainer/', TrainerAddView.as_view(), name='add_trainer'),
 ]
+

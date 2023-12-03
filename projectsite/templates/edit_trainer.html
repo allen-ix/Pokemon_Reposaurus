@@ -1,0 +1,13 @@
+<!-- edit_trainer.html -->
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+  <h2>Edit Trainer</h2>
+  <form method="post" action="{% url 'edit_trainer' object.id %}">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <input type="submit" value="Save">
+  </form>
+  <a href="{% url 'trainer-list' %}">Cancel</a>
+{% endblock %}
