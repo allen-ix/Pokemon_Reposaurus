@@ -27,3 +27,5 @@ class TrainerList(ListView):
     def get_queryset(self, *args, **kwargs):
         qs = super(TrainerList, self).get_queryset(*args, **kwargs)
         return qs
+
+

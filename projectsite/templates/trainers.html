@@ -20,11 +20,11 @@
                 <td>{{ object.location }}</td>
                 <td>{{ object.email }}</td>
                 <td>
-                  <!-- Edit Button -->
-                  <a href="edit_trainer.html/{{ object.id }}">Edit</a>
+                
                   <!-- Delete Button -->
-                  <a href="delete_trainer.html/{{ object.id }}">Delete</a>
+                  <a href="{% url 'delete_trainer' object.id %}">Delete</a>
               </td>
+              
               
             </tr>
             {% empty %}
