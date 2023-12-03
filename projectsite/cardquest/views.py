@@ -1,7 +1,20 @@
 from django.shortcuts import render
-
 from django.views.generic.list import ListView
 from cardquest.models import PokemonCard, Trainer
+
+class PokemonCardList(ListView):
+    model = PokemonCard
+    context_object_name = 'pokemon_cards'
+    template_name = 'pokemon_cards.html'
+    paginate_by = 5
+
+    def get_queryset(self, *args, **kwargs):
+        qs = super(PokemonCardList, self).get_queryset(*args, **kwargs)
+        return qs
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        return context
 
 
 class HomePageView(ListView):
@@ -36,8 +49,8 @@ from django.shortcuts import render, get_object_or_404, redirect
 from django.views.generic.edit import DeleteView, UpdateView
 from django.urls import reverse_lazy
 from .models import Trainer
-from projectsite.forms import TrainerForm  # Import the form you use for editing
-from projectsite.forms import TrainerAddForm
+from projectsite.forms import TrainerForm, PokemonCardForm  # Import the form you use for editing
+from projectsite.forms import TrainerAddForm, PokemonAddForm
 from django.views import View
 
 class TrainerAddView(View):
@@ -72,3 +85,38 @@ class TrainerDeleteView(DeleteView):
 
     def get(self, request, *args, **kwargs):
         return self.post(request, *args, **kwargs)
+    
+
+
+class PokemonUpdateView(UpdateView):
+    model = PokemonCard
+    form_class = PokemonCardForm
+    template_name = 'edit_pokemon.html'
+    success_url = reverse_lazy('pokemon-card-list')  # Redirect to the trainer list after editing
+
+    def form_valid(self, form):
+        # Additional logic if needed before saving the form
+        return super().form_valid(form)
+
+
+class PokemonDeleteView(DeleteView):
+    model = PokemonCard
+    template_name = 'delete_pokemon.html'
+    success_url = reverse_lazy('pokemon-card-list')  # Redirect to the trainer list after deletion
+
+    def get(self, request, *args, **kwargs):
+        return self.post(request, *args, **kwargs)
+    
+class PokemonAddView(View):
+    template_name = 'add_pokemon.html'
+
+    def get(self, request):
+        form = PokemonAddForm()
+        return render(request, self.template_name, {'form': form})
+
+    def post(self, request):
+        form = PokemonAddForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('pokemon-card-list') 
+        return render(request, self.template_name, {'form': form})

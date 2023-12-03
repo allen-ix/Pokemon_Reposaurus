@@ -1,0 +1,13 @@
+<!-- add_trainer.html -->
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+  <h2>Add Pokemon Card</h2>
+  <form method="post" action="{% url 'add_pokemon' %}">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Add Pokemon Card</button>
+  </form>
+  <a href="{% url 'pokemon-card-list' %}">Cancel</a>
+{% endblock %}
