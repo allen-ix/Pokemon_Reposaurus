@@ -13,16 +13,14 @@
           <th>Trainer Name</th>
           <th>Pokemon Card</th>
           <th>Collection Date</th>
-          <!-- Add more columns as needed -->
         </tr>
       </thead>
       <tbody>
-        {% for collection in collection %}
+        {% for collections in collection %}
           <tr>
-            <td>{{ collection.trainer.name }}</td>
-            <td>{{ collection.card.name }}</td>
-            <td>{{ collection.collection_date }}</td>
-            <!-- Add more columns as needed -->
+            <td>{{ collections.trainer.name }}</td>
+            <td>{{ collections.card.name }}</td>
+            <td>{{ collections.collection_date }}</td>
           </tr>
         {% empty %}
           <tr>

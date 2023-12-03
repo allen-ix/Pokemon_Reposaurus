@@ -1,6 +1,20 @@
 from django.shortcuts import render
 from django.views.generic.list import ListView
-from cardquest.models import PokemonCard, Trainer
+from cardquest.models import PokemonCard, Trainer, Collection
+
+class CollectionList(ListView):
+    model = Collection
+    context_object_name = 'collection'
+    template_name = 'collection.html'
+    paginate_by = 5
+
+    def get_queryset(self, *args, **kwargs):
+        qs = super(CollectionList, self).get_queryset(*args, **kwargs)
+        return qs
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        return context
 
 class PokemonCardList(ListView):
     model = PokemonCard
