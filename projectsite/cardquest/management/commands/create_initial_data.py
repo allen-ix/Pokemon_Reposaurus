@@ -14,10 +14,10 @@ class Command(BaseCommand):
     def create_pokemon_cards(self):
         # Create Pokemon Card instances
         card1 = PokemonCard(name="Pikachu", rarity="Rare", hp=60, card_type="Electric", attack="Thunder Shock", description="A mouse-like pokemon that can generate electricity.",
-                            weakness="Ground", card_number=25, release_date="1999-01-09", evolution_stage="Basic", abilities="Static")
+                            weakness="Ground", card_number=25, release_date="1999-01-09", evolution_stage="Basic", abilities="Static",image_url="https://assets.pokemon.com/assets/cms2/img/pokedex/full/025.png")
         card2 = PokemonCard(name="Charmeleon", rarity="Rare", hp=120, card_type="Fire", attack="Flamethrower",
                             description="It has a barbaric nature. In battle, it whips its fiery tail around and slashes away with sharp claws.",
-                            weakness="Water", card_number=5, release_date="1996-02-27", evolution_stage="Stage 2", abilities="Solar Power")
+                            weakness="Water", card_number=5, release_date="1996-02-27", evolution_stage="Stage 2", abilities="Solar Power",image_url="https://assets.pokemon.com/assets/cms2/img/pokedex/full/005.png")
         card3 = PokemonCard(name="Mewtwo", rarity="Uncommon", hp=150, card_type="Psychic", attack="Psychic",
                             description="A genetically engineered pokemon that has powerful psychic abilities.",
                             weakness="Dark", card_number=10, release_date="1996-02-27", evolution_stage="Basic", abilities="Pressure")
@@ -83,6 +83,7 @@ class Command(BaseCommand):
         self.stdout.write(self.style.SUCCESS(
             'Successfully created Pokemon cards.'))
         print(f"Pokemon record count: {PokemonCard.objects.count()}")
+        print(card1.image_url)
 
     def create_trainers(self):
         # Create Trainer instances

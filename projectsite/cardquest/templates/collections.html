@@ -1,28 +1,21 @@
-<!-- collections.html -->
-
 {% extends 'base.html' %}
 {% load static %}
 
 {% block content %}
   <!-- COLLECTIONS -->
-  <section class="collections-container">
-    <h2>Collections</h2>
+  <section class="collection-container">
     <table class="styled-table">
-      <thead>
+      <tbody>      
         <tr>
           <th>Trainer Name</th>
           <th>Pokemon Card</th>
           <th>Collection Date</th>
-          <!-- Add more columns as needed -->
         </tr>
-      </thead>
-      <tbody>
-        {% for collection in collection %}
+        {% for collection in collections %}
           <tr>
             <td>{{ collection.trainer.name }}</td>
             <td>{{ collection.card.name }}</td>
             <td>{{ collection.collection_date }}</td>
-            <!-- Add more columns as needed -->
           </tr>
         {% empty %}
           <tr>
@@ -33,6 +26,5 @@
         {% endfor %}
       </tbody>
     </table>
-    {% include 'includes/pagination.html' %}
   </section>
 {% endblock %}
