@@ -537,3 +537,26 @@
     color: #ffffff; /* Change color on hover if desired */
     /* Add additional hover effects */
   }
+
+
+  /* Add your styles for Pokemon cards here */
+.pokemon-cards-wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.pokemon-card {
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 20px;
+  width: 200px;
+  text-align: center;
+}
+
+.pokemon-card img {
+  max-width: 100%;
+  border-radius: 5px;
+}
+
+/* Add additional styling as needed */
