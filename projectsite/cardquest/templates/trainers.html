@@ -1,6 +1,5 @@
 {% extends 'base.html' %}
 {% load static %}
-
 {% block content %}
 <!--TRAINERS-->
 <section class="trainers-container">
@@ -29,4 +28,17 @@
       </tbody>
     </table>
   </section>
+  {% extends 'base.html' %}
+  {% load static %}
+  {% block content %}
+{% endblock %}
+
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+{% endblock %}
+
+<div>
+{% include 'includes/pagination.html' %}
+</div>
 {% endblock %}
