@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-# Register your models here.
+# Register your models here.v
 from .models import PokemonCard, Trainer, Collection
 
 #admin.site.register(PokemonCard)
