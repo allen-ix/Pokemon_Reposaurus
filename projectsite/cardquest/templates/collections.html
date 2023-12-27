@@ -3,6 +3,7 @@
 
 {% block content %}
   <!-- COLLECTIONS -->
+  <a href="{% url 'collection-add' %}" class="btn btn-outline-primary">Add New Collection</a><br>
   <section class="collection-container">
     <table class="styled-table">
       <tbody>      
@@ -10,12 +11,17 @@
           <th>Trainer Name</th>
           <th>Pokemon Card</th>
           <th>Collection Date</th>
+          <th>Action</th>
         </tr>
         {% for collection in collections %}
           <tr>
             <td>{{ collection.trainer.name }}</td>
             <td>{{ collection.card.name }}</td>
             <td>{{ collection.collection_date }}</td>
+            <td>
+              <a href="{% url 'collection-edit' collection.id %}" >Edit</a> |
+              <a href="{% url 'collection-delete' collection.id %}" >Delete</a>            
+            </td>
           </tr>
         {% empty %}
           <tr>

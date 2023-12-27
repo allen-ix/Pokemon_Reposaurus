@@ -3,6 +3,7 @@
 
 {% block content %}
   <!-- POKEMON CARDS -->
+  <a href="{% url 'add_pokemon_card' %}">Add Pokemon Card</a>
   <section class="cards-container">
     {% for card in pokemon_cards %}
       <div class="card-box">
@@ -53,6 +54,12 @@
               </tbody>
             </table>
             <hr />
+
+            <!-- Edit Pokemon Card Link -->
+            <a href="{% url 'edit_pokemon_card' card.id %}">Edit</a>
+
+            <!-- Delete Pokemon Card Link -->
+            <a href="{% url 'delete_pokemon_card' card.id %}">Delete</a>
           </div>
         </div>
       </div>

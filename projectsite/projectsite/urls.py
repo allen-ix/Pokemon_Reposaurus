@@ -29,12 +29,22 @@ urlpatterns = [
     path('',views.HomePageView.as_view(),name='home'),
 ]
 
-from cardquest.views import HomePageView, TrainerList, PokemonCardList ,CollectionList
+from cardquest.views import HomePageView, TrainerList, PokemonCardList ,CollectionList, EditPokemonCardView
 
 urlpatterns = [
-path('admin/', admin.site.urls), 
-path('', views.HomePageView.as_view(), name='home'),
-path('trainer_list/', TrainerList.as_view(), name='trainer-list'), 
-path('pokemon-card-list/', PokemonCardList.as_view(), name='pokemon-card-list'),
-path('collections/', CollectionList.as_view(), name='collection-list'),
+    path('admin/', admin.site.urls),
+    path('', views.HomePageView.as_view(), name='home'),
+    path('trainer_list/', TrainerList.as_view(), name='trainer-list'),
+    path('trainer_add', views.TrainerAddView.as_view(), name='trainer-add'),
+    path('trainer_edit/<int:pk>/', views.TrainerEditView.as_view(), name='trainer-edit'),
+    path('trainer_del/<int:pk>/', views.TrainerDeleteView.as_view(), name='trainer-delete'),
+    path('pokemon-card-list/', PokemonCardList.as_view(), name='pokemon-card-list'),
+    path('collections/', CollectionList.as_view(), name='collection-list'),
+    path('collections/add/', views.CollectionAddView.as_view(), name='collection-add'),
+    path('collections/edit/<int:pk>/', views.CollectionEditView.as_view(), name='collection-edit'),
+    path('collections/delete/<int:pk>/', views.CollectionDeleteView.as_view(), name='collection-delete'),
+    path('pokemon-cards/', views.pokemon_cards, name='pokemon_cards'),
+    path('add-pokemon-card/', views.add_pokemon_card.as_view(), name='add_pokemon_card'),
+    path('edit-pokemon-card/<int:pk>/', EditPokemonCardView.as_view(), name='edit_pokemon_card'),
+    path('delete-pokemon-card/<int:card_id>/', views.delete_pokemon_card, name='delete_pokemon_card'),
 ]

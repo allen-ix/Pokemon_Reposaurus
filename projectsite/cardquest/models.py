@@ -1,4 +1,5 @@
 from django.db import models
+from django.utils import timezone
 
 # Create your models here.
 class BaseModel(models.Model):
@@ -60,5 +61,7 @@ class PokemonCard(BaseModel):
 class Collection(BaseModel):
     card = models.ForeignKey(PokemonCard, blank=True, null=True, on_delete=models.CASCADE)
     trainer = models.ForeignKey(Trainer, blank=True, null=True, on_delete=models.CASCADE)
-    collection_date = models.DateField()        
+    collection_date = models.DateTimeField(default=timezone.now)
+    quantity = models.IntegerField(default=1)
+  
         

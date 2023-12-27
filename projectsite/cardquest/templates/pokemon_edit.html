@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+{% url 'edit_pokemon_card' card.id as edit_url %}
+<form role="form" class="" action="{{ edit_url }}" method="post" novalidate>
+    {% csrf_token %}
+    
+    <!-- Include form fields for editing -->
+    <div class="form-group">
+        <label for="id_name">Name:</label>
+        <input type="text" name="name" id="id_name" value="{{ card.name }}">
+    </div>
+    
+    <div class="form-group">
+        <label for="id_rarity">Rarity:</label>
+        <select name="rarity" id="id_rarity">
+            <option value="Common" {% if card.rarity == 'Common' %}selected{% endif %}>Common</option>
+            <option value="Uncommon" {% if card.rarity == 'Uncommon' %}selected{% endif %}>Uncommon</option>
+            <option value="Rare" {% if card.rarity == 'Rare' %}selected{% endif %}>Rare</option>
+        </select>
+    </div>
+    
+    <!-- Repeat similar blocks for other fields -->
+    
+    <br />
+    <div class="form-group">
+        <div class="col-md-12 col-sm-3">
+            <button type='submit' class="btn btn-primary">Submit</button>
+        </div>
+    </div>
+</form>
+{% endblock %}
